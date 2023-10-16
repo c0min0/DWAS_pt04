@@ -13,18 +13,12 @@
 <body>
 	<div class="contenidor">
 		<div class="nav">
-			<?php if (isset($user)) echo $user ?> <!-- Usuari -->
-			<span class="<?php if (!$logged) echo 'hidden' ?>">
-				<a href="index.php?logout" class="link-button">Tanca la sessió</a>
-			</span>
-			<span class="<?php if ($logged) echo 'hidden' ?>">
+			<span>
 				<a href="index.php?login" class="link-button">Inicia la sessió</a>
 			</span>
-			<span class="<?php if ($logged) echo 'hidden' ?>">
+			<span>
 				<a href="index.php?signup" class="link-button">Enregistra't</a>
 			</span>
-
-
 		</div>
 		<h1>Articles</h1>
 		<div class="pag_selector"> <!-- Selector de quantitat d'articles -->
