@@ -20,7 +20,7 @@ body {
 	margin: auto;
 }
 
-h1 {
+h1, h2 {
 	margin: 20px 0;
 	text-align: center;
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -128,4 +128,8 @@ h1 {
 
 .error {
 	color: red;
+}
+
+.success {
+	color: green;
 }

@@ -18,6 +18,7 @@
 			</span>
 		</div>
 		<h1>Entra</h1>
+		<?php echo $successSignup ?>
 		<section class="centered">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 				<label for="userOrEmail">Usuari o adreça electrònica:</label><br>

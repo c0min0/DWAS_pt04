@@ -3,6 +3,59 @@
 require_once 'database.model.php';
 require_once '../controller/test/test.controller.php';
 
+
+/**
+ * Funció que retorna un usuari de la base de dades
+ * @return array amb l'usuari
+ */
+function findUserByUsername($user) {
+    $user = cleanInput($user);
+
+    try {
+        $conexion = getConnection();
+
+        $sql = "SELECT * FROM users WHERE user = :user";
+        $stmt = $conexion->prepare($sql);
+
+        $stmt->bindParam(':user', $user);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al obtenir l\'usuari :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
+
+/**
+ * Funció que retorna un usuari de la base de dades
+ * @return array amb l'usuari
+ */
+function findUserByEmail($email) {
+    $email = cleanInput($email);
+
+    try {
+        $conexion = getConnection();
+
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $conexion->prepare($sql);
+
+        $stmt->bindParam(':email', $email);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al obtenir l\'usuari :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
+
 /**
  * Funció que insereix un nou usuari a la base de dades
  * @param $user nom d'usuari
@@ -18,9 +71,13 @@ function addUser($user, $email, $password)
         $sql = "INSERT INTO users (user, email, password) VALUES (:user, :email, :password)";
         $stmt = $conexion->prepare($sql);
 
-        $stmt->bindParam(':user', cleanInput($user));
-        $stmt->bindParam(':password', cleanInput(password_hash($password, PASSWORD_DEFAULT)));
-        $stmt->bindParam(':email', cleanInput($email));
+        $user = cleanInput($user);
+        $email = cleanInput($email);
+        $password = cleanInput(password_hash($password, PASSWORD_DEFAULT));
+
+        $stmt->bindParam(':user', $user);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
 
         $stmt->execute();
 
