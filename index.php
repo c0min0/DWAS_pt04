@@ -1,9 +1,16 @@
 <!-- Víctor Comino -->
 <?php
-require 'model/article.model.php';
+
+require_once 'model/articles.model.php';
+require_once 'controller/test/test.controller.php';
 
 $user = '';
 $logged = false;
+$error = '';
+
+if (isset($_GET['error'])) {
+    $error = cleanInput($_GET['error']).' error';
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['login'])) {
@@ -16,63 +23,61 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 }
 
-main();
+// Establim el número de pàgina en la que l'usuari es troba
+$pg = getPage();
 
-function main()
-{
-    // Establim el número de pàgina en la que l'usuari es troba
-    $pg = getPage();
+// Establim el número d'articles per pàgina
+$numeroArticles = getNumArticles();
 
-    // Establim el número d'articles per pàgina
-    $numeroArticles = getNumArticles();
-
-    // Perquè se seleccioni el número d'articles 
-    // al desplegable que coincideix amb els de la pàgina
-    $cinc = $deu = $quinze = $vint = '';
-    switch ($numeroArticles) {
-        case 5:
-            $cinc = 'selected';
-            break;
-        case 10:
-            $deu = 'selected';
-            break;
-        case 15:
-            $quinze = 'selected';
-            break;
-        case 20:
-            $vint = 'selected';
-    }
-
-    // Obtenim els registres
-    $articles = findAll();
-
-    // Missatge en cas de no tenir cap article a la bd
-    if (count($articles) == 0) {
-        $list = '<li>No hi ha cap article :(</li>';
-        $paginacio = '';
-        include_once 'view/article-list.view.php';
-        return;
-    }
-
-    // Calculem el total de pàgines
-    $totalPg = intval(count($articles) / $numeroArticles) + 1;
-
-    // Per tornar a la pagina principal si l'usuari 
-    // intenta accedir a una pagina que no existeix
-    if ($pg > $totalPg) {
-        header('Location: index.php?num_art=' . $numeroArticles);
-    }
-
-    // Generem el llistat d'articles
-    $list = generateList($pg, $numeroArticles, $articles);
-
-    // Generem la paginació
-    $paginacio = generatePaginacio($numeroArticles, $pg, $totalPg);
-
-
-    // Mostrem la vista
-    include_once 'view/article-list.view.php';
+// Perquè se seleccioni el número d'articles 
+// al desplegable que coincideix amb els de la pàgina
+$cinc = $deu = $quinze = $vint = '';
+switch ($numeroArticles) {
+    case 5:
+        $cinc = 'selected';
+        break;
+    case 10:
+        $deu = 'selected';
+        break;
+    case 15:
+        $quinze = 'selected';
+        break;
+    case 20:
+        $vint = 'selected';
 }
+
+// Obtenim els registres
+$articles = findAllArticles();
+
+// Missatge en cas de no tenir cap article a la bd
+if (count($articles) == 0) {
+    $list = '<li>No hi ha cap article :(</li>';
+    $paginacio = '';
+    include_once 'view/article-list.view.php';
+    return;
+}
+
+// Calculem el total de pàgines
+$totalPg = intval(count($articles) / $numeroArticles) + 1;
+
+// Per tornar a la pagina principal si l'usuari 
+// intenta accedir a una pagina que no existeix
+if ($pg > $totalPg) {
+    header('Location: index.php?num_art=' . $numeroArticles);
+}
+
+// Generem el llistat d'articles
+$list = generateList($pg, $numeroArticles, $articles);
+
+// Generem la paginació
+$paginacio = generatePaginacio($numeroArticles, $pg, $totalPg);
+
+
+// Mostrem la vista
+include_once 'view/article-list.view.php';
+
+
+
 
 /**
  * Mètode que retorna el número de pàgina 

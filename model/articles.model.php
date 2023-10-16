@@ -1,25 +1,13 @@
 <!-- Víctor Comino -->
 <?php
-require_once "env.php";
 
-/**
- * Mètode que retorna la conexió amb la base de dades
- * o informa que no ha estat possible
- */
-function getConnection() {
-    $env = env();
-    try {
-        return new PDO($env['host'], $env['user'], $env['password']);
-    } catch (PDOException $e) {
-        echo '<p style="color: red">Ha hagut algún problema al connectar amb la base de dades :/</p>';
-        die();
-    }
-}
+require_once 'database.model.php';
 
 /**
  * Mètode que retorna tots els registres de la taula artícles
+ * @return array amb tots els registres de la taula artícles
  */
-function findAll() {
+function findAllArticles() {
     try {
         $conexion = getConnection();
         $sql = "SELECT * FROM articles";
@@ -35,4 +23,5 @@ function findAll() {
         $conexion = null;
     }
 }
+
 ?>

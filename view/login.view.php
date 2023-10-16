@@ -20,8 +20,8 @@
 		<h1>Entra</h1>
 		<section class="centered">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-				<label for="user">Usuari:</label><br>
-				<input type="text" name="user" required>
+				<label for="userOrEmail">Usuari o adreça electrònica:</label><br>
+				<input type="text" name="userOrEmail" required>
 				<br><br>
 				<label for="password">Contrasenya:</label><br>
 				<input type="password" name="password" required>

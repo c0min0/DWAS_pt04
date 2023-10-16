@@ -20,6 +20,7 @@
 				<a href="index.php?signup" class="link-button">Enregistra't</a>
 			</span>
 		</div>
+		<h1 class="error"><?php echo $error ?></h1>
 		<h1>Articles</h1>
 		<div class="pag_selector"> <!-- Selector de quantitat d'articles -->
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">

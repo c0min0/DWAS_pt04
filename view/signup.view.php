@@ -21,16 +21,24 @@
         <section class="centered">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <label for="user">Usuari:</label><br>
-                <input type="text" name="user" required>
-                <br><br>
+                <input type="text" name="user" required value="<?php echo $user;?>">
+                <div class="error"><?php echo $errors['userErr']?></div>
+                <br>
+                <label for="email">Correu electrònic:</label><br>
+                <input type="email" name="email" required value="<?php echo $email;?>">
+                <div class="error"><?php echo $errors['emailErr']?></div>
+                <br>
                 <label for="password">Contrasenya:</label><br>
-                <input type="password" name="password" required>
-                <br><br>
-                <label for="password">Repeteix la contrasenya:</label><br>
-                <input type="password" name="password" required>
-                <br><br>
+                <input type="password" name="password" required value="<?php echo $password;?>">
+                <div class="error"><?php echo $errors['passErr']?></div>
+                <br>
+                <label for="repass">Repeteix la contrasenya:</label><br>
+                <input type="password" name="repass" required value="<?php echo $repass;?>">
+                <div class="error"><?php echo $errors['repassErr']?></div>
+                <br>
                 <input type="submit" value="Registra't" class="link-button">
-                <br><br>
+                <br>
+                <div class="error"><?php echo $errors['genericErr']?></div>
                 <p>o <a href="login.controller.php">entra</a></p>
             </form>
         </section>
