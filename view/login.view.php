@@ -27,6 +27,7 @@
 				<label for="password">Contrasenya:</label><br>
 				<input type="password" name="password" required>
 				<br><br>
+				<?php echo $errors['genericErr'] ?>
 				<input type="submit" value="Entra" class="link-button">
 				<br><br>
 				<p>o <a href="signup.controller.php">registra't</a></p>
