@@ -3,10 +3,9 @@
 require_once 'utils/test.controller.php';
 require_once '../model/users.model.php';
 
-session_start();
-
 // Redirim a l'usuari a la pàgina privada si està autenticat
-if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+session_start();
+if (isset($_SESSION['userId'])) {
     header("Location: private.controller.php");
     exit;
 }
@@ -35,8 +34,13 @@ if (isset($_POST['userOrEmail']) && isset($_POST['password'])) {
 
             // Comprovem la contrasenya
             if (password_verify($password, $userDB['password'])) {
+
+                // Establim el temps de vida de la sessió a 30min (per defecte és 24min)
+                ini_set('session.gc_maxlifetime', 1800);
+                
                 // Iniciem sessió
-                $_SESSION['logged'] = true;
+                session_start();
+                $_SESSION['userId'] = $userDB['id'];
                 
                 // Redirigim a l'espai privat
                 header('Location: private.controller.php');

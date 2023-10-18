@@ -12,7 +12,7 @@ $error = '';
 session_start();
 
 // Redirim a l'usuari a la pàgina privada si està autenticat
-if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+if (isset($_SESSION['userId'])) {
     header("Location: controller/private.controller.php");
     exit;
 }

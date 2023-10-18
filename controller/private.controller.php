@@ -12,7 +12,7 @@ $error = '';
 session_start();
 
 // Redirim a l'usuari a la pàgina d'inici de sessió si no està autenticat
-if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
+if (!isset($_SESSION['userId'])) {
     header("Location: login.controller.php");
     exit;
 }
@@ -49,7 +49,7 @@ switch ($numeroArticles) {
 }
 
 // Obtenim els registres
-$articles = findAllArticles();
+$articles = findArticlesByUserId($_SESSION['userId']);
 
 // Missatge en cas de no tenir cap article a la bd
 if (count($articles) == 0) {
