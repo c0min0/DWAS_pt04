@@ -2,7 +2,15 @@
 <?php
 
 require_once '../model/users.model.php';
-require_once 'test/test.controller.php';
+require_once 'utils/test.controller.php';
+
+session_start();
+
+// Redirim a l'usuari a la pàgina privada si està autenticat
+if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+    header("Location: private.controller.php");
+    exit;
+}
 
 // Definim camps necessaris per a la vista
 $user = $email = $password = $repass = "";
@@ -40,7 +48,6 @@ if (
         $errors['userErr'] = 'L\'usuari ja existeix';
     }
 
-
     // Correu electrònic
     if (!validateEmail($email)) {
         $errors['emailErr'] = 'El correu electrònic no és vàlid';
@@ -66,8 +73,10 @@ if (
     if (!$anyError) {
         if (addUser($user, $email, $password)) {
             header("Location: login.controller.php?signup=ok");
+            exit;
         } else {
             header("Location: ../index.php?error=signup");
+            exit;
         }
     }
 }

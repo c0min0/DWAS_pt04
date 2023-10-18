@@ -1,7 +1,7 @@
 <!-- Víctor Comino -->
 <?php
 require_once 'database.model.php';
-require_once '../controller/test/test.controller.php';
+require_once '../controller/utils/test.controller.php';
 
 
 /**
@@ -89,5 +89,4 @@ function addUser($user, $email, $password)
         $conexion = null;
     }
 }
-
 ?>
