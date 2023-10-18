@@ -87,6 +87,7 @@ h1, h2 {
 	position: absolute;
 	right: 0;
 	margin-right: 15%;
+	top: 100px;
 }
 
 .pag_selector>form {
@@ -132,4 +133,50 @@ h1, h2 {
 
 .success {
 	color: green;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.input-article {
+	width: 88%;
+}
+
+.action-button {
+	background-color: #0074D9;
+	border: none;
+	border-radius: 10px;
+	padding: 5px 10px;
+	margin-left: 10px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.action-button:hover {
+	background-color: #0063aa;
+}
+
+.trash {
+	background-color: #ff0000;
+}
+
+.trash:hover {
+	background-color: #cc0000;
+}
+
+.li-article {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: space-around;
+}
+
+.add {
+	background-color: #aaa;
+	width: calc(width*2);
+}
+
+.add:hover {
+	background-color: #999;
 }

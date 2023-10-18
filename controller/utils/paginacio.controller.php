@@ -24,11 +24,15 @@ function getNumArticles()
  * @param $pg número de pàgina a la què ens trobem
  * @param $numeroArticles quantitat d'articles per pàgina
  * @param $articles array d'articles 
+ * @param $editable indica si l'usuari pot editar els articles
  * @return string amb la llista d'articles en format html
  */
-function generateList($pg, $numeroArticles, $articles)
+function generateList($pg, $numeroArticles, $articles, $editable = false)
 {
-    $list = '<li>';
+    $saveButton = '<button type="submit" name="update" class="action-button"><img src="../view/assets/icons/save.svg"></button>';
+    $removeButton = '<button type="submit" name="remove" class="action-button trash"><img src="../view/assets/icons/trash.svg"></button>';
+    $startLiString = $editable ? '<li class="li-article">' : '<li>';
+    $list = $startLiString;
 
     // Inici
     $i = ($pg - 1) * $numeroArticles;
@@ -39,11 +43,17 @@ function generateList($pg, $numeroArticles, $articles)
     // Generem entrades d'inici a final
     for ($i; $i < $f; $i++) {
         $article = $articles[$i];
-        $list .= strval($i + 1) . '. ' . $article['article'] . '</li>';
+        if ($editable) {
+            $list .= '<span>' . strval($i + 1) . '. </span>' 
+            .'<form class="inline input-article"><input class="input-article" type="text" name="selectedArticle" value="'
+            .$article['article'].'"><span>'.$saveButton.$removeButton.'</span></form></li>';
+        } else {          
+            $list .= strval($i + 1) . '. ' . $article['article'] . '</li>';
+        }
 
         // Si no és l'últim afegim una nova entrada
         if ($i < $f - 1) {
-            $list .= '<li>';
+            $list .= $startLiString;
         }
 
         // Si hem arribat al final del total d'articles finalitzem el bucle

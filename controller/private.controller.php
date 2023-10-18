@@ -70,7 +70,7 @@ if ($pg > $totalPg) {
 }
 
 // Generem el llistat d'articles
-$list = generateList($pg, $numeroArticles, $articles);
+$list = generateList($pg, $numeroArticles, $articles, true);
 
 // Generem la paginació
 $paginacio = generatePaginacio($numeroArticles, $pg, $totalPg);

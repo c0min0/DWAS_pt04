@@ -29,10 +29,11 @@
 					<option value="20" <?php echo $vint ?>>20</option>
 				</select>
 			</form>
-			<br>
+			<br><br>
 		</div>
 		<section class="articles">
 			<ul>
+			<li class="li-article"><span>➕</span><form class="inline input-article"><input class="input-article" type="text"><span><button type="submit" name="add" class="action-button add"><img src="../view/assets/icons/add.svg"></button></span></form></li>
 				<?php echo $list ?> <!-- Llista d'articles -->
 			</ul>
 		</section>
