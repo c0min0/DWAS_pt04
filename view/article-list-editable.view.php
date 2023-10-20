@@ -17,7 +17,8 @@
 				<a href="private.controller.php?logout" class="link-button">Tanca la sessió</a>
 			</span>
 		</div>
-		<h1 class="error"><?php echo $error ?></h1>
+		<?php echo $success ?>
+		<?php echo $error ?>
 		<h1>Articles</h1>
 		<div class="pag_selector"> <!-- Selector de quantitat d'articles -->
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
@@ -33,7 +34,14 @@
 		</div>
 		<section class="articles">
 			<ul>
-			<li class="li-article"><span>➕</span><form class="inline input-article"><input class="input-article" type="text"><span><button type="submit" name="add" class="action-button add"><img src="../view/assets/icons/add.svg"></button></span></form></li>
+				<li class="li-article">
+					<span>➕</span>
+					<form class="inline input-article" action="" method="post">
+						<input class="input-article" name="article" type="text"><button type="submit" name="add" class="action-button add">
+							<img src="../view/assets/icons/add.svg">
+						</button>
+					</form>
+				</li>
 				<?php echo $list ?> <!-- Llista d'articles -->
 			</ul>
 		</section>

@@ -30,7 +30,7 @@ function getNumArticles()
 function generateList($pg, $numeroArticles, $articles, $editable = false)
 {
     $saveButton = '<button type="submit" name="update" class="action-button"><img src="../view/assets/icons/save.svg"></button>';
-    $removeButton = '<button type="submit" name="remove" class="action-button trash"><img src="../view/assets/icons/trash.svg"></button>';
+    $removeButton = '<button type="submit" name="delete" class="action-button trash"><img src="../view/assets/icons/trash.svg"></button>';
     $startLiString = $editable ? '<li class="li-article">' : '<li>';
     $list = $startLiString;
 
@@ -45,9 +45,11 @@ function generateList($pg, $numeroArticles, $articles, $editable = false)
         $article = $articles[$i];
         if ($editable) {
             $list .= '<span>' . strval($i + 1) . '. </span>' 
-            .'<form class="inline input-article"><input class="input-article" type="text" name="selectedArticle" value="'
+            .'<form class="inline input-article" action="" method="post">'
+            .'<input type="hidden" name="articleId" value="'.$article['id'].'">'
+            .'<input class="input-article" type="text" name="selectedArticle" value="'
             .$article['article'].'"><span>'.$saveButton.$removeButton.'</span></form></li>';
-        } else {          
+        } else {
             $list .= strval($i + 1) . '. ' . $article['article'] . '</li>';
         }
 

@@ -73,7 +73,7 @@ function addUser($user, $email, $password)
 
         $user = cleanInput($user);
         $email = cleanInput($email);
-        $password = cleanInput(password_hash($password, PASSWORD_DEFAULT));
+        $password = password_hash(cleanInput($password), PASSWORD_DEFAULT);
 
         $stmt->bindParam(':user', $user);
         $stmt->bindParam(':email', $email);

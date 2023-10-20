@@ -24,7 +24,6 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-
 // Establim el número de pàgina en la que l'usuari es troba
 $pg = getPage();
 
@@ -46,6 +45,44 @@ switch ($numeroArticles) {
         break;
     case 20:
         $vint = 'selected';
+}
+
+$success = '';
+if (isset($_GET['success']) && $_GET['success'] == 'true') {
+    $success = '<h2 class="success">Procés executat amb èxit</h2>';
+} else if (isset($_GET['success']) && $_GET['success'] == 'false') {
+    $success = '<h2 class="error">El procés no s\'ha pogut realitzar l\'acció :(</h2>';
+}
+
+if (isset($_POST['add'])) {
+    $article = $_POST['article'];
+    if (addArticle($article)) {
+        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        exit;
+    }
+    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    exit;
+}
+
+if (isset($_POST['update'])) {
+    $articleId = $_POST['articleId'];
+    $article = $_POST['selectedArticle'];
+    if (updateArticle($articleId, $article)) {
+        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        exit;
+    }
+    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    exit;
+}
+
+if (isset($_POST['delete'])) {
+    $articleId = $_POST['articleId'];
+    if (deleteArticle($articleId)) {
+        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        exit;
+    }
+    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    exit;
 }
 
 // Obtenim els registres
