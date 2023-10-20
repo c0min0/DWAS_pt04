@@ -7,7 +7,7 @@
  */
 function getPage()
 {
-    return $_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['page']) ? $_GET['page'] : 1;
+    return isset($_COOKIE['page']) ? $_COOKIE['page'] : 1;
 }
 
 /**
@@ -16,7 +16,7 @@ function getPage()
  */
 function getNumArticles()
 {
-    return $_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['num_art']) ? $_GET['num_art'] : 5;
+    return isset($_COOKIE['num_art']) ? $_COOKIE['num_art'] : 5;
 }
 
 /**

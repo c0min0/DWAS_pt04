@@ -37,6 +37,8 @@
 				<li class="li-article">
 					<span>➕</span>
 					<form class="inline input-article" action="" method="post">
+						<input type="hidden" name="num_art" value="<?php echo $numeroArticles ?>">
+						<input type="hidden" name="page" value="<?php echo $pg ?>">
 						<input class="input-article" name="article" type="text"><button type="submit" name="add" class="action-button add">
 							<img src="../view/assets/icons/add.svg">
 						</button>
