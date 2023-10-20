@@ -42,6 +42,16 @@ $pg = getPage();
 // Establim el número d'articles per pàgina
 $numeroArticles = getNumArticles();
 
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['page'])) {
+    setcookie('page', $_GET['page'], time() + 3600);
+    $pg = $_GET['page'];
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['num_art'])) {
+    setcookie('num_art', $_GET['num_art'], time() + 3600);
+    $numeroArticles = $_GET['num_art'];
+}
+
 // Perquè se seleccioni el número d'articles 
 // al desplegable que coincideix amb els de la pàgina
 $cinc = $deu = $quinze = $vint = '';
@@ -71,12 +81,14 @@ if (count($articles) == 0) {
 }
 
 // Calculem el total de pàgines
-$totalPg = intval(count($articles) / $numeroArticles) + 1;
+$totalPg = count($articles) / $numeroArticles;
+if (is_float($totalPg)) $totalPg = intval($totalPg) + 1;
+
 
 // Per tornar a la pagina principal si l'usuari 
 // intenta accedir a una pagina que no existeix
 if ($pg > $totalPg) {
-    header('Location: index.php?num_art=' . $numeroArticles);
+    header('Location: index.php?page=1&num_art=' . $numeroArticles);
     exit;
 }
 

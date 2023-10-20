@@ -67,10 +67,10 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
 if (isset($_POST['add'])) {
     $article = $_POST['article'];
     if (addArticle($article)) {
-        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        header('Location: private.controller.php?success=true');
         exit;
     }
-    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    header('Location: private.controller.php?success=false');
     exit;
 }
 
@@ -78,20 +78,20 @@ if (isset($_POST['update'])) {
     $articleId = $_POST['articleId'];
     $article = $_POST['selectedArticle'];
     if (updateArticle($articleId, $article)) {
-        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        header('Location: private.controller.php?success=true');
         exit;
     }
-    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    header('Location: private.controller.php?success=false');
     exit;
 }
 
 if (isset($_POST['delete'])) {
     $articleId = $_POST['articleId'];
     if (deleteArticle($articleId)) {
-        header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=true');
+        header('Location: private.controller.php?success=true');
         exit;
     }
-    header('Location: private.controller.php?num_art=' . $numeroArticles . '&page=' . $pg . '&success=false');
+    header('Location: private.controller.php?success=false');
     exit;
 }
 
@@ -107,12 +107,13 @@ if (count($articles) == 0) {
 }
 
 // Calculem el total de pàgines
-$totalPg = intval(count($articles) / $numeroArticles) + 1;
+$totalPg = count($articles) / $numeroArticles;
+if (is_float($totalPg)) $totalPg = intval($totalPg) + 1;
 
 // Per tornar a la pagina principal si l'usuari 
 // intenta accedir a una pagina que no existeix
 if ($pg > $totalPg) {
-    header('Location: index.php?num_art=' . $numeroArticles);
+    header('Location: private.controller.php?page=1&num_art=' . $numeroArticles);
     exit;
 }
 

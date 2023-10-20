@@ -8,6 +8,7 @@
 function getPage()
 {
     return isset($_COOKIE['page']) ? $_COOKIE['page'] : 1;
+    // return $_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['page']) ? $_GET['page'] : 1;
 }
 
 /**
@@ -17,6 +18,7 @@ function getPage()
 function getNumArticles()
 {
     return isset($_COOKIE['num_art']) ? $_COOKIE['num_art'] : 5;
+    // return $_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['num_art']) ? $_GET['num_art'] : 5;
 }
 
 /**
@@ -117,7 +119,7 @@ function generatePaginacio($numeroArticles, $pg, $totalPg)
         $paginacio .= '<li><a href="?page=' . ($pg + 1) . '&num_art=' . $numeroArticles . '">&raquo;</a></li>';
     }
 
-    // Mostrem el botó última àgina si no estem a la última pàgina
+    // Mostrem el botó última pàgina si no estem a la última pàgina
     if ($pg < $totalPg) {
         $paginacio .= '<li><a href="?page=' . $totalPg . '&num_art=' . $numeroArticles . '">&raquo;&raquo;</a></li>';
     }
