@@ -1,7 +1,6 @@
 <!-- Víctor Comino -->
 <?php
 require_once __DIR__ . '/../env.php';
-;
 
 /**
  * Mètode que retorna la conexió amb la base de dades

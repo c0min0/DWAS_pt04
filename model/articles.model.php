@@ -48,6 +48,12 @@ function findArticlesByUserId($userId) {
     }
 }
 
+
+/**
+ * Mètode per a afegir un article a la taula articles
+ * @param $article article a afegir
+ * @return true si s'ha afegit correctament, false altrament
+ */
 function addArticle($article) {
     try {
         $conexion = getConnection();
@@ -67,6 +73,12 @@ function addArticle($article) {
     }
 }
 
+/**
+ * Mètode per a actualitzar un article de la taula articles
+ * @param $articleId id de l'article a actualitzar
+ * @param $article article actualitzat
+ * @return true si s'ha actualitzat correctament, false altrament
+ */
 function updateArticle($articleId, $article) {
     try {
         $conexion = getConnection();
@@ -86,6 +98,11 @@ function updateArticle($articleId, $article) {
     }
 }
 
+/**
+ * Mètode per a eliminar un article de la taula articles
+ * @param $articleId id de l'article a eliminar
+ * @return true si s'ha eliminat correctament, false altrament
+ */
 function deleteArticle($articleId) {
     try {
         $conexion = getConnection();

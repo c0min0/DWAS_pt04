@@ -23,18 +23,12 @@ $errors = [
     'genericErr' => ''
 ];
 
-###PENDENT####
-// Si l'usuari ja està loguejat, el redirigim a la pàgina principal
-// if (isset($_SESSION['user'])) {
-//     header('Location: ../index.php');
-// }
 if (
     isset($_POST["user"])
     && isset($_POST["email"])
     && isset($_POST["password"])
     && isset($_POST["repass"])
 ) {
-
     // Validem les dades
     $user = cleanInput($_POST["user"]);
     $email = cleanInput($_POST["email"]);
@@ -70,6 +64,7 @@ if (
         }
     }
 
+    // Si no hi ha cap error, creem l'usuari i el redirigim a la pàgina de login
     if (!$anyError) {
         if (addUser($user, $email, $password)) {
             header("Location: login.controller.php?signup=ok");
@@ -81,5 +76,6 @@ if (
     }
 }
 
+// Incluim la vista
 include_once '../view/signup.view.php';
 ?>

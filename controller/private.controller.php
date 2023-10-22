@@ -27,13 +27,13 @@ if (isset($_GET['logout'])) {
 // Establim el número de pàgina en la que l'usuari es troba
 $pg = getPage();
 
-// Establim el número d'articles per pàgina
-$numeroArticles = getNumArticles();
-
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['page'])) {
     setcookie('page', $_GET['page'], time() + 3600);
     $pg = $_GET['page'];
 }
+
+// Establim el número d'articles per pàgina
+$numeroArticles = getNumArticles();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['num_art'])) {
     setcookie('num_art', $_GET['num_art'], time() + 3600);
@@ -57,6 +57,7 @@ switch ($numeroArticles) {
         $vint = 'selected';
 }
 
+// Missatge en cas de que s'hagi realitzat una acció
 $success = '';
 if (isset($_GET['success']) && $_GET['success'] == 'true') {
     $success = '<h2 class="success">Procés executat amb èxit</h2>';
@@ -64,6 +65,7 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
     $success = '<h2 class="error">El procés no s\'ha pogut realitzar l\'acció :(</h2>';
 }
 
+// Si s'ha enviat el formulari d'afegir article
 if (isset($_POST['add'])) {
     $article = $_POST['article'];
     if (addArticle($article)) {
@@ -74,6 +76,7 @@ if (isset($_POST['add'])) {
     exit;
 }
 
+// Si s'ha enviat el formulari d'actualitzar article
 if (isset($_POST['update'])) {
     $articleId = $_POST['articleId'];
     $article = $_POST['selectedArticle'];
@@ -85,6 +88,7 @@ if (isset($_POST['update'])) {
     exit;
 }
 
+// Si s'ha enviat el formulari d'esborrar article
 if (isset($_POST['delete'])) {
     $articleId = $_POST['articleId'];
     if (deleteArticle($articleId)) {

@@ -39,13 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 // Establim el número de pàgina en la que l'usuari es troba
 $pg = getPage();
 
-// Establim el número d'articles per pàgina
-$numeroArticles = getNumArticles();
-
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['page'])) {
     setcookie('page', $_GET['page'], time() + 3600);
     $pg = $_GET['page'];
 }
+
+// Establim el número d'articles per pàgina
+$numeroArticles = getNumArticles();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['num_art'])) {
     setcookie('num_art', $_GET['num_art'], time() + 3600);
