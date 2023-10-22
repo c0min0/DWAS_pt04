@@ -2,12 +2,10 @@
 <?php
 
 require_once '../model/articles.model.php';
+require_once '../model/users.model.php';
 require_once 'utils/test.controller.php';
 require_once 'utils/paginacio.controller.php';
 
-$user = '';
-$logged = false;
-$error = '';
 
 session_start();
 
@@ -16,6 +14,9 @@ if (!isset($_SESSION['userId'])) {
     header("Location: login.controller.php");
     exit;
 }
+
+// Definim usuari
+$user = findUserById($_SESSION['userId'])["user"];
 
 // Si se sol·licita tancar la sessió, redirigim a la pàgina principal
 if (isset($_GET['logout'])) {

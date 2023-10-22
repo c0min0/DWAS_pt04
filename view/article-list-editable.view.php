@@ -14,11 +14,11 @@
 	<div class="contenidor">
 		<div class="nav">
 			<span>
+				<span class="user"><?php echo $user ?></span>
 				<a href="private.controller.php?logout" class="link-button">Tanca la sessió</a>
 			</span>
 		</div>
 		<?php echo $success ?>
-		<?php echo $error ?>
 		<h1>Articles</h1>
 		<div class="pag_selector"> <!-- Selector de quantitat d'articles -->
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">

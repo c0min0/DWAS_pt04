@@ -180,3 +180,9 @@ h1, h2 {
 .add:hover {
 	background-color: #999;
 }
+
+.user {
+	margin-right: 14px;
+	color:#0063aa;
+	font-size: 22px;
+}

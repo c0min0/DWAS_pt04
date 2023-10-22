@@ -3,9 +3,37 @@
 require_once 'database.model.php';
 require_once '../controller/utils/test.controller.php';
 
+/**
+ * Funció que retorna un usuari de la base de dades
+ * @param $id identificador de l'usuari
+ * @return array amb l'usuari
+ */
+function findUserById($id) {
+    $id = cleanInput($id);
+
+    try {
+        $conexion = getConnection();
+
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $stmt = $conexion->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al obtenir l\'usuari :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
+
 
 /**
  * Funció que retorna un usuari de la base de dades
+ * @param $user nom d'usuari
  * @return array amb l'usuari
  */
 function findUserByUsername($user) {
@@ -32,6 +60,7 @@ function findUserByUsername($user) {
 
 /**
  * Funció que retorna un usuari de la base de dades
+ * @param $email correu electrònic
  * @return array amb l'usuari
  */
 function findUserByEmail($email) {
