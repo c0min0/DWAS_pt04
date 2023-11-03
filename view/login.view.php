@@ -31,6 +31,7 @@
 				<input type="submit" value="Entra" class="link-button">
 				<br><br>
 				<p>o <a href="signup.controller.php">registra't</a></p>
+				<br><a href="retrieve-password.controller.php">He oblidat la contrasenya</a>
 			</form>
 		</section>
 	</div>

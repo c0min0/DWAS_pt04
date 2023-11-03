@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pt04_victor_comino`
+-- Database: `pt05_victor_comino`
 --
 
 -- --------------------------------------------------------
@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `articles`
 --
 
-DROP DATABASE IF EXISTS pt04_victor_comino;
-CREATE DATABASE pt04_victor_comino;
-USE pt04_victor_comino;
+DROP DATABASE IF EXISTS pt05_victor_comino;
+CREATE DATABASE pt05_victor_comino;
+USE pt05_victor_comino;
 
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL,

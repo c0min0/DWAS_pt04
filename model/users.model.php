@@ -118,4 +118,29 @@ function addUser($user, $email, $password)
         $conexion = null;
     }
 }
+
+function updateRetrieveToken($userId) {
+    try {
+        $conexion = getConnection();
+
+        $sql = "UPDATE users SET retrieveToken = :retrieveToken, retrieveTokenExpiration = :retrieveTokenExpiration WHERE id = :userId";
+        $stmt = $conexion->prepare($sql);
+
+        $retrieveToken = bin2hex(random_bytes(50));
+        $retrieveTokenExpiration = date('Y-m-d H:i:s', strtotime('+30 minutes'));
+        
+        $stmt->bindParam(':retrieveToken', $retrieveToken);
+        $stmt->bindParam(':retrieveTokenExpiration', $retrieveTokenExpiration);
+        $stmt->bindParam(':userId', $userId);
+
+        $stmt->execute();
+
+        return $retrieveToken;
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al actualitzar el token de recuperació :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
 ?>
