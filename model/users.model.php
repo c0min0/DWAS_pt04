@@ -126,8 +126,8 @@ function updateRetrieveToken($userId) {
         $sql = "UPDATE users SET retrieveToken = :retrieveToken, retrieveTokenExpiration = :retrieveTokenExpiration WHERE id = :userId";
         $stmt = $conexion->prepare($sql);
 
-        $retrieveToken = bin2hex(random_bytes(50));
-        $retrieveTokenExpiration = date('Y-m-d H:i:s', strtotime('+30 minutes'));
+        $retrieveToken = bin2hex(random_bytes(50).time().$userId);
+        $retrieveTokenExpiration = time() + 1800;
         
         $stmt->bindParam(':retrieveToken', $retrieveToken);
         $stmt->bindParam(':retrieveTokenExpiration', $retrieveTokenExpiration);
@@ -138,6 +138,52 @@ function updateRetrieveToken($userId) {
         return $retrieveToken;
     } catch (PDOException $e) {
         echo '<p style="color: red">Error 500: Ha hagut algún problema al actualitzar el token de recuperació :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
+
+function findUserByToken($token) {
+    try {
+        $conexion = getConnection();
+
+        $sql = "SELECT * FROM users WHERE retrieveToken = :token AND retrieveTokenExpiration > :now";
+        $stmt = $conexion->prepare($sql);
+
+        $now = time();
+
+        $stmt->bindParam(':token', $token);
+        $stmt->bindParam(':now', $now);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al obtenir l\'usuari :/</p>';
+        die();
+    } finally {
+        $conexion = null;
+    }
+}
+
+function updatePasswordById($userId, $password) {
+    try {
+        $conexion = getConnection();
+
+        $sql = "UPDATE users SET password = :password WHERE id = :userId";
+        $stmt = $conexion->prepare($sql);
+
+        $password = password_hash(cleanInput($password), PASSWORD_DEFAULT);
+
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':userId', $userId);
+
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        echo '<p style="color: red">Error 500: Ha hagut algún problema al actualitzar la contrasenya :/</p>';
         die();
     } finally {
         $conexion = null;

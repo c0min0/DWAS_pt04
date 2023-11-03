@@ -17,7 +17,7 @@ $errors = [
 // Comprovem si s'accedeixa la pàgina després de registrar un usuari 
 $successSignup = '';
 if (isset($_GET['signup']) ? $_GET['signup'] == 'ok' : false) {
-    $successSignup = '<h2 class="success">Us heu registrat amb èxit! Ja podeu iniciar sessió</h2>';
+    $successSignup = '<h2 class="success">Procés realitzat amb èxit! Ja podeu iniciar sessió</h2>';
 }
 
 // Comprovem les credencials

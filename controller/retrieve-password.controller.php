@@ -27,7 +27,7 @@ if (isset($_POST['email'])) {
             $subject = 'Recupera la teva contrasenya';
 
             $token = updateRetrieveToken($userDB['id']);
-            $url = env()['base_retrieve_link'] . "retrieve-password.controller.php?token=$token";
+            $url = env()['base_retrieve_link'] . "/controller/change-password.controller.php?token=$token";
             $message = "
             <html>
             <head>
