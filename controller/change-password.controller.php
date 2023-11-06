@@ -19,10 +19,11 @@ $repeat_password = '';
 if (isset($_POST['new_password']) && isset($_POST['repeat_password'])) {
     $new_password = cleanInput($_POST['new_password']);
     $repeat_password = cleanInput($_POST['repeat_password']);
-    
+
+    // Provem de canviar la contrasenya
     if (validateStrLength($new_password, 6, 20) && $new_password === $repeat_password) {
         $userDB = findUserByToken($_GET['token']);
-        
+
         if ($userDB) {
             if (updatePasswordById($userDB['id'], $new_password)) {
                 header("Location: login.controller.php?signup=ok");
