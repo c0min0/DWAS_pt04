@@ -9,12 +9,6 @@ if (isset($_SESSION['userId'])) {
     exit;
 }
 
-// Per controlar si s'intenta accedir amb el nombre d'intents esgotat
-if ($_SESSION['token_try'] < 0) {
-    include_once 'recaptcha.controller.php';
-    exit;
-}
-
 $errors = [
     'genericErr' => ''
 ];
@@ -30,44 +24,43 @@ $token_try = $_SESSION['token_try'] ?? 2;
 
 // Comprovem les credencials
 if (isset($_POST['userOrEmail']) && isset($_POST['password'])) {
-    // Comprovem si s'ha superat el límit de intents
-    if ($token_try > 0) {
-        // Restem intent
-        $_SESSION['token_try'] = $token_try - 1;
 
-        // Netejem inputs
-        $userOrEmail = cleanInput($_POST['userOrEmail']);
-        $password = cleanInput($_POST['password']);
+    // Restem intent
+    $_SESSION['token_try'] = $token_try - 1;
 
-        // Cerquem a la BD
-        $userDB = strpos($userOrEmail, '@') ? findUserByEmail($userOrEmail) : findUserByUsername($userOrEmail);
+    // Netejem inputs
+    $userOrEmail = cleanInput($_POST['userOrEmail']);
+    $password = cleanInput($_POST['password']);
 
-        // En cas que es trobi l'usuari
-        if ($userDB) {
-            // Comprovem la contrasenya
-            if (password_verify($password, $userDB['password'])) {
-                // Establim el temps de vida de la sessió a 30min (per defecte és 24min)
-                ini_set('session.gc_maxlifetime', 1800);
+    // Cerquem a la BD
+    $userDB = strpos($userOrEmail, '@') ? findUserByEmail($userOrEmail) : findUserByUsername($userOrEmail);
 
-                // Iniciem sessió
-                session_start();
-                $_SESSION['userId'] = $userDB['id'];
+    // En cas que es trobi l'usuari
+    if ($userDB) {
+        // Comprovem la contrasenya
+        if (password_verify($password, $userDB['password'])) {
+            // Establim el temps de vida de la sessió a 30min (per defecte és 24min)
+            ini_set('session.gc_maxlifetime', 1800);
 
-                // Redirigim a l'espai privat
-                header('Location: private.controller.php');
-                exit;
-            } else {
-                $errors['genericErr'] = '<div class="error">Usuari o contrasenya incorrectes</div><br>';
-            }
+            // Iniciem sessió
+            session_start();
+            $_SESSION['userId'] = $userDB['id'];
+
+            // Redirigim a l'espai privat
+            header('Location: private.controller.php');
+            exit;
         } else {
             $errors['genericErr'] = '<div class="error">Usuari o contrasenya incorrectes</div><br>';
         }
     } else {
-        // Restem intent per si s'intenta accedir des del menú inicial
-        $_SESSION['token_try'] = $token_try - 1;
-        include_once 'recaptcha.controller.php';
-        exit;
+        $errors['genericErr'] = '<div class="error">Usuari o contrasenya incorrectes</div><br>';
     }
-} 
+}
+
+// Per controlar si s'intenta accedir amb el nombre d'intents esgotat
+if (isset($_SESSION['token_try']) && $_SESSION['token_try'] < 0) {
+    include_once 'recaptcha.controller.php';
+    exit;
+}
 
 include_once '../view/login.view.php';
