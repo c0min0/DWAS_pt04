@@ -30,6 +30,8 @@
 				<?php echo $errors['genericErr'] ?>
 				<input type="submit" value="Entra" class="link-button">
 				<br><br>
+				<?php require('../controller/oauth-autentification.controller.php')?>
+        		<a href="<?php echo $client->createAuthUrl() ?>">Inicia la sessió amb Google</a>
 				<p>o <a href="signup.controller.php">registra't</a></p>
 				<br><a href="retrieve-password.controller.php">He oblidat la contrasenya</a>
 			</form>

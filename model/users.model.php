@@ -92,7 +92,7 @@ function findUserByEmail($email) {
  * @param $password contrasenya
  * @return bool true si s'ha inserit correctament, false altrament
  */
-function addUser($user, $email, $password)
+function addUser($user, $email, $password = '')
 {
     try {
         $conexion = getConnection();

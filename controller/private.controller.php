@@ -6,7 +6,6 @@ require_once '../model/users.model.php';
 require_once 'utils/test.controller.php';
 require_once 'utils/paginacio.controller.php';
 
-
 session_start();
 
 // Redirim a l'usuari a la pàgina d'inici de sessió si no està autenticat
@@ -131,4 +130,5 @@ $paginacio = generatePaginacio($numeroArticles, $pg, $totalPg);
 
 // Mostrem la vista
 include_once '../view/article-list-editable.view.php';
+exit;
 ?>

@@ -2,6 +2,7 @@
 <?php
 require_once 'utils/test.controller.php';
 require_once '../model/users.model.php';
+
 // Redirim a l'usuari a la pàgina privada si està autenticat
 session_start();
 if (isset($_SESSION['userId'])) {
