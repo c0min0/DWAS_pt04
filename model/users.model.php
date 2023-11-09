@@ -1,7 +1,7 @@
 <!-- Víctor Comino -->
 <?php
-require_once 'database.model.php';
-require_once '../controller/utils/test.controller.php';
+require_once __DIR__ . '/database.model.php';
+require_once __DIR__ . '/../controller/utils/test.controller.php';
 
 /**
  * Funció que retorna un usuari de la base de dades

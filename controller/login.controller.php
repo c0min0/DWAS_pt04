@@ -1,7 +1,7 @@
 <!-- Víctor Comino -->
 <?php
-require_once 'utils/test.controller.php';
-require_once '../model/users.model.php';
+require_once __DIR__ . '/utils/test.controller.php';
+require_once __DIR__ . '/../model/users.model.php';
 
 // Redirim a l'usuari a la pàgina privada si està autenticat
 session_start();
@@ -60,7 +60,7 @@ if (isset($_POST['userOrEmail']) && isset($_POST['password'])) {
 
 // Per controlar si s'intenta accedir amb el nombre d'intents esgotat
 if (isset($_SESSION['token_try']) && $_SESSION['token_try'] < 0) {
-    include_once 'recaptcha.controller.php';
+    include_once __DIR__ . '/utils/recaptcha/recaptcha.controller.php';
     exit;
 }
 

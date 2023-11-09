@@ -1,8 +1,8 @@
 <!-- Víctor Comino -->
 <?php
 
-require_once '../model/users.model.php';
-require_once 'utils/test.controller.php';
+require_once __DIR__ . '/../model/users.model.php';
+require_once __DIR__ . '/utils/test.controller.php';
 
 session_start();
 

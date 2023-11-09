@@ -1,9 +1,9 @@
 <!-- Víctor Comino -->
 <?php
 
-require_once 'model/articles.model.php';
-require_once 'controller/utils/test.controller.php';
-require_once 'controller/utils/paginacio.controller.php';
+require_once __DIR__ . '/model/articles.model.php';
+require_once __DIR__ . '/controller/utils/test.controller.php';
+require_once __DIR__ . '/controller/utils/paginacio.controller.php';
 
 $user = '';
 $logged = false;

@@ -1,7 +1,7 @@
 <!-- Víctor Comino -->
 <?php
 
-require_once 'database.model.php';
+require_once __DIR__ . '/database.model.php';
 
 /**
  * Mètode que retorna tots els registres de la taula artícles

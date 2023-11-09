@@ -13,7 +13,7 @@
 <body>
   <h2>Demostra que no ets un robot</h2>
   <section class="centered">
-    <form action="recaptcha.controller.php" method="POST">
+    <form method="POST">
       <div class="g-recaptcha" data-sitekey="6LdbnP4oAAAAAG7pymzhn0r2GEoMDKdMb6sFKvWn"></div>
       <br />
       <input type="submit" value="Submit">

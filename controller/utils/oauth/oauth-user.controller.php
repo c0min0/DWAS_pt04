@@ -1,6 +1,6 @@
 <!-- Victor Comino -->
 <?php
-require_once 'oauth-autentification.controller.php';
+require_once __DIR__ . '/oauth-autentification.controller.php';
 
 session_start();
 
@@ -21,6 +21,6 @@ if (isset($emailOAuth)) {
 }
 
 // Redirim a l'usuari a la pàgina privada
-header("Location: private.controller.php");
+header("Location: ../../private.controller.php");
 
 ?>

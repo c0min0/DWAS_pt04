@@ -1,7 +1,7 @@
 <!-- Víctor Comino -->
 <?php
-  require_once 'oauth-configuration.controller.php';
-  require_once '../model/users.model.php';
+  require_once __DIR__ . '/oauth-configuration.controller.php';
+  require_once __DIR__ . '/../../../model/users.model.php';
 
 // autentiquem el codi de Google OAuth
 if (isset($_GET['code'])) {

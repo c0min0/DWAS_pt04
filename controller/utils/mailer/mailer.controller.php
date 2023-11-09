@@ -1,12 +1,9 @@
 <?php
-require_once '../env.php';
+require_once __DIR__ . '/../../../env.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require_once "../dependencies/PHPMailer-6.8.1/src/PHPMailer.php";
-require_once "../dependencies/PHPMailer-6.8.1/src/Exception.php";
-require_once "../dependencies/PHPMailer-6.8.1/src/SMTP.php";
-
 
 /**
  * Funció que envia un correu amb PHPMailer
