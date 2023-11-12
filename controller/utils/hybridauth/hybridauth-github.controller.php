@@ -1,13 +1,13 @@
 <!-- Víctor Comino -->
 <?php
-
+require_once __DIR__ . '/../../../env.php';
 include __DIR__ . '/../../../vendor/autoload.php';
 
 $config = [
-    'callback' => 'http://localhost/practiques_backend/M07_UF1/Victor_Comino_Pt05/controller/utils/hybridauth/hybridauth-user.controller.php',
+    'callback' => env_hybridauth()['callback'],
     'keys' => [
-        'id' => '9534514f0ef728dbcf12',
-        'secret' => '481b78ae280fcda59661bde4ebe10dda7e95b15d'
+        'id' => env_hybridauth()['key_id'],
+        'secret' => env_hybridauth()['key_secret'],
     ],
 ];
 

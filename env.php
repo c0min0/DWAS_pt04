@@ -36,4 +36,13 @@ function env_oauth()
         "client_secret" => "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"
     );
 }
+
+function env_hybridauth()
+{
+    return array(
+        "callback" => "http://localhost/practiques_backend/M07_UF1/Victor_Comino_Pt05/controller/utils/hybridauth/hybridauth-user.controller.php",
+        "key_id" => "9534514f0ef728dbcf12",
+        "key_secret" => "481b78ae280fcda59661bde4ebe10dda7e95b15d"
+    );
+}
 ?>
