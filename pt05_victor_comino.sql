@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 09:07 PM
+-- Generation Time: Nov 12, 2023 at 05:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -23,13 +23,13 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `articles`
---
-
 DROP DATABASE IF EXISTS pt05_victor_comino;
 CREATE DATABASE pt05_victor_comino;
 USE pt05_victor_comino;
+
+--
+-- Table structure for table `articles`
+--
 
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL,
@@ -47,7 +47,9 @@ CREATE TABLE `users` (
   `id` int(6) NOT NULL,
   `user` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(500) NOT NULL
+  `password` varchar(500) DEFAULT NULL,
+  `retrieveToken` varchar(500) NOT NULL,
+  `retrieveTokenExpiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -77,13 +79,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables
