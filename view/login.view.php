@@ -32,6 +32,8 @@
 				<br><br>
 				<?php require '../controller/utils/oauth/oauth-autentification.controller.php'?>
         		<a href="<?php echo $client->createAuthUrl() ?>">Inicia la sessió amb Google</a>
+				<br>
+        		<a href="../controller/utils/hybridauth/hybridauth-github.controller.php">Inicia la sessió amb Github</a>
 				<p>o <a href="signup.controller.php">registra't</a></p>
 				<br><a href="retrieve-password.controller.php">He oblidat la contrasenya</a>
 			</form>
