@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../../env.php';
 include __DIR__ . '/../../../vendor/autoload.php';
 
+// Configuració Hybridauth
 $config = [
     'callback' => env_hybridauth()['callback'],
     'keys' => [
@@ -11,10 +12,13 @@ $config = [
     ],
 ];
 
+// Creem l'objecte Hybridauth
 $github = new Hybridauth\Provider\GitHub($config);
 
+// Autentiquem l'usuari
 $github->authenticate();
 
+// Obtenim l'email de l'usuari
 try {
     $emailHybridauth = $github->getUserProfile()->email;
 
