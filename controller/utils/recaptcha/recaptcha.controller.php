@@ -1,8 +1,11 @@
 <!-- Víctor Comino -->
 <?php
+require_once __DIR__ . '../../../../env.php';
+
 if (!empty($_POST)) {
 
-	$secret = "6LdbnP4oAAAAAEpNaSJCbLdEJSGwnyOBEzXcpxJC";
+	// Secret per a la API de Google
+	$secret = env_captcha()['secret'];
 
 	if (isset($_POST['g-recaptcha-response'])) {
 		$captcha = $_POST['g-recaptcha-response'];
@@ -11,10 +14,13 @@ if (!empty($_POST)) {
 
 		$arr = json_decode($response, TRUE);
 
+		// Si és correcte, iniciem sessió i redirigim a login
 		if ($arr['success']) {
 			session_start();
-			// Resetejem intents
+
+			// Resetejem intents de login
 			$_SESSION['token_try'] = 2;
+			
 			header("Location: ../controller/login.controller.php");
 		} else {
 			$errorRecap = "No ets un humà";

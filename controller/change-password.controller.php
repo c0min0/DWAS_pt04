@@ -2,8 +2,6 @@
 <?php
 require_once __DIR__ . '/utils/test.controller.php';
 require_once __DIR__ . '/../model/users.model.php';
-require_once __DIR__ . '/../env.php';
-
 
 // Redirim a l'usuari a la pàgina privada si està autenticat
 session_start();

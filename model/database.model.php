@@ -8,7 +8,7 @@ require_once __DIR__ . '/../env.php';
  * @return PDO connexió amb la base de dades
  */
 function getConnection() {
-    $env = env();
+    $env = env_db();
     try {
         return new PDO($env['host'], $env['user'], $env['password']);
     } catch (PDOException $e) {

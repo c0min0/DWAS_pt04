@@ -17,7 +17,7 @@ function sendWithPHPMailer($email, $nom, $subject, $message)
 {
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
-    $mailData = env();
+    $mailData = env_mail();
 
     try {
         

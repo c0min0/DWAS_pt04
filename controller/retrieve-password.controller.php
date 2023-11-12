@@ -3,8 +3,6 @@
 require_once __DIR__ . '/utils/test.controller.php';
 require_once __DIR__ . '/utils/mailer/mailer.controller.php';
 require_once __DIR__ . '/../model/users.model.php';
-require_once __DIR__ . '/../env.php';
-
 
 // Redirim a l'usuari a la pàgina privada si està autenticat
 session_start();
@@ -27,7 +25,7 @@ if (isset($_POST['email'])) {
             $subject = 'Recupera la teva contrasenya';
 
             $token = updateRetrieveToken($userDB['id']);
-            $url = env()['base_retrieve_link'] . "/controller/change-password.controller.php?token=$token";
+            $url = "http://localhost/practiques_backend/M07_UF1/Victor_Comino_Pt05/controller/change-password.controller.php?token=$token";
             $message = "
             <html>
             <head>
